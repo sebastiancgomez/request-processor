@@ -3,9 +3,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RequestProcessor.Application.Dtos;
 using RequestProcessor.Application.Interfaces;
-using RequestProcessor.Application.Services;
-using RequestProcessor.Domain.Entities;
-using RequestProcessor.Domain.Repositories;
 
 namespace RequestProcessor.Api.Controllers;
 
@@ -14,12 +11,10 @@ namespace RequestProcessor.Api.Controllers;
 public class RequestsController : ControllerBase
 {
     private readonly IRequestService _requestService;
-    private readonly IMessagePublisher _messagePublisher;
 
-    public RequestsController(IRequestService service, IMessagePublisher messagePublisher)
+    public RequestsController(IRequestService service)
     {
         _requestService = service;
-        _messagePublisher = messagePublisher;
     }
 
     [HttpPost]
