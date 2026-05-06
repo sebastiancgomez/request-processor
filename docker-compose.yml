@@ -1,0 +1,68 @@
+services:
+  postgres: 
+    image: postgres:17
+    container_name: request-processor-db
+    networks:
+      - app-network
+    restart: always
+    environment:
+      POSTGRES_DB: request_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    healthcheck: 
+      test: ["CMD-SHELL", "pg_isready -U postgres -d request_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: RequestProcessor.Api/Dockerfile
+    container_name: request-processor-api
+    networks:
+      - app-network
+    env_file:
+    - .env  
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__PostgresConnection: Host=${DB_HOST};Port=${DB_PORT};Database=${DB_NAME};Username=${DB_USER};Password=${DB_PASSWORD}
+      ConnectionStrings__AzureServiceBus: ${AZURE_SERVICE_BUSS_CONNECTION_STRING}
+      ConnectionStrings__AzureStorage: ${AZURE_STORAGE_CONNECTION_STRING}
+      Messaging__QueueName: request-created-queue
+      Messaging__Provider: ${MESSAGING_PROVIDER}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: azurite
+    networks:
+      - app-network
+    hostname: azurite
+    restart: always
+    # Eliminamos el comando restrictivo y usamos el predeterminado con --loose
+    command: azurite --loose --blobHost 0.0.0.0 --queueHost 0.0.0.0
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+    volumes:
+      - azurite_data:/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+  azurite_data:

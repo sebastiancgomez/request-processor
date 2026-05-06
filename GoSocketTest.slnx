@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".env" />
+    <File Path=".env.template" />
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="RequestProcessor.Api/RequestProcessor.Api.csproj" />
+  <Project Path="RequestProcessor.Application/RequestProcessor.Application.csproj" />
+  <Project Path="RequestProcessor.Domain/RequestProcessor.Domain.csproj" />
+  <Project Path="RequestProcessor.Infrastructure/RequestProcessor.Infrastructure.csproj" />
+</Solution>

@@ -1,0 +1,22 @@
+# --- Archivos de Entorno ---
+.env
+*.env
+!.env.template
+
+# --- .NET Standard ---
+bin/
+obj/
+publish/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# --- Docker ---
+.dockerignore
+
+# --- Logs ---
+logs/
+*.log
