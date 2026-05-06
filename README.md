@@ -11,7 +11,7 @@ El proyecto implementa una **Arquitectura Hexagonal (Clean Architecture)** para 
 *   **Mensajería:** Azure Queue Storage (utilizando **Azurite** para emulación local).
 *   **Validación:** FluentValidation para garantizar la integridad de los datos de entrada.
 *   **Logging:** Serilog con sinks para Consola y Archivo.
-*   **Contenedores:** Docker y Docker Compose para orquestación de servicios[cite: 1].
+*   **Contenedores:** Docker y Docker Compose para orquestación de servicios.
 ---
 ## 🚀 Ejecución Local
 
@@ -29,7 +29,7 @@ El proyecto implementa una **Arquitectura Hexagonal (Clean Architecture)** para 
 ---
 ## ⚙️ Configuración (Variables de Entorno)
 El sistema utiliza un archivo .env (o variables en el compose) con las siguientes claves principales:
-*   **DB_HOST/DB_NAME/DB_USER/DB_PASSWORD:** Credenciales para la base de datos PostgreSQL[cite: 1].
+*   **DB_HOST/DB_NAME/DB_USER/DB_PASSWORD:** Credenciales para la base de datos PostgreSQL.
 *   **AZURE_STORAGE_CONNECTION_STRING:** Cadena de conexión dirigida al servicio de Azurite.
 *   **AZURE_SERVICE_BUSS_CONNECTION_STRING:** Cadena de conexión dirigida al service bus  de Azure.
 *   **MESSAGING_PROVIDER:** Proveedor de mensajeria (QueueStorage/ServiceBus)
