@@ -50,7 +50,6 @@ services:
       - app-network
     hostname: azurite
     restart: always
-    # Eliminamos el comando restrictivo y usamos el predeterminado con --loose
     command: azurite --loose --blobHost 0.0.0.0 --queueHost 0.0.0.0
     ports:
       - "10000:10000"
