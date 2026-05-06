@@ -68,7 +68,6 @@ Se han configurado los siguientes secretos y variables de entorno en la nube:
 
 **3. Compatibilidad con Azurite:** Se forzó la versión del servicio V2024_05_04 en el cliente de Azure Storage para garantizar la compatibilidad entre el SDK de .NET 8 y el emulador local.
 
-**4. Resiliencia:** Se implementaron Health Checks para asegurar que la API no acepte tráfico si las dependencias (DB o Colas) no están disponibles.
 
 ---
 
